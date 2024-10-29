@@ -85,8 +85,6 @@ let currentQuestionIndex= 0;
 let questions= [];
 let selectedDifficulty= "";
 
-
-
 function loadQuestions(choiceDifficulty = "facile"){
     selectedDifficulty = choiceDifficulty;
     console.log("Difficulté : " + selectedDifficulty)
@@ -104,14 +102,13 @@ function loadQuestions(choiceDifficulty = "facile"){
             currentQuestionIndex = 0
             console.log("questions non filtrées" + questions);
             console.log("questions filtrées" + filteredQuestions);
-            //startQuiz()
+            startQuiz()
         });
-        
     } catch (error) {
         console.log=("erreur lors du chargement des questions", error);
     }
 }
-/*function startQuiz() {
+function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
     document.getElementById(".quiz-container").classList.remove("hidden")
     showQuestions()
@@ -123,5 +120,3 @@ function showQuestions() {
         console.log( "question data" + questionData)
     }
 }
-*/
-    
