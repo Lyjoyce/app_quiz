@@ -74,6 +74,7 @@ document.getElementById("logout-btn").addEventListener("click", function(){
     localStorage.setItem("isAuthenticated",false)
     window.location.href="login.html"
 })
+/*
 document.querySelectorAll(".difficulty-btn").forEach((btn) => {
     btn.addEventListener("click",function(){
         const level= btn.getAttribute("data-level")
@@ -85,43 +86,82 @@ let currentQuestionIndex= 0;
 let questions= [];
 let selectedDifficulty= "";
 
+selectedDifficulty = "difficulty"
+currentQuestionIndex = 0
 
-
-function loadQuestions(choiceDifficulty = "facile"){
-    selectedDifficulty = choiceDifficulty;
-    console.log("Difficulté : " + selectedDifficulty)
+async function loadQuestions(){
+    console.log=("difficile" + "difficulty")
 
     try {
-        const response= fetch("questions.json")
-        .then((response) => {
-            return response.json();
-        })
-        .then((questions) => {
-            const filteredQuestions = questions.filter(
-                (q)=>q.difficulty===selectedDifficulty
-            )
-            
-            currentQuestionIndex = 0
-            console.log("questions non filtrées" + questions);
-            console.log("questions filtrées" + filteredQuestions);
-            //startQuiz()
-        });
-        
+        const response= await fetch("questions.json")
+        questions= await response.json()
+        const filteredQuestions = questions.filter(
+            (q)=>q.question===difficulty
+        )
+
+        //console.log("questions non filtrées" + questions);
+        //console.log("questions filtrées" + filteredQuestions);
+        startQuiz()
     } catch (error) {
         console.log=("erreur lors du chargement des questions", error);
     }
 }
-/*function startQuiz() {
+function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
     document.getElementById(".quiz-container").classList.remove("hidden")
     showQuestions()
 }
 function showQuestions() {
     if(currentQuestionIndex.length<questions.length) {
-        console.log(questions)
         const questionData= questions[currentQuestionIndex]
         console.log( "question data" + questionData)
     }
 }
 */
-    
+filterSelection("all") // Execute the function and show all columns
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+// Show filtered elements
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {
+      element.className += " " + arr2[i];
+    }
+  }
+}
+
+// Hide elements that are not selected
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}    
