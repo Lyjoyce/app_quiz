@@ -1,3 +1,48 @@
+let currentQuestionIndex= 0;
+let questions= [];
+let selectedDifficulty= "";
+
+function loadQuestions(choiceDifficulty = ""){
+    selectedDifficulty = choiceDifficulty;
+    console.log("Difficulté : " + selectedDifficulty)
+
+    try {
+        const response= fetch("questions.json")
+        //const AllQuestions= await response.json();
+        //questions=AllQuestions.filter(
+       //     (q) q.difficulty===difficulty
+       // )
+        
+        .then((response) => {
+            return response.json();
+        })
+        .then((questions) => {
+            const filteredQuestions = questions.filter(
+                (q)=>q.difficulty===selectedDifficulty
+            )
+            selectedDifficulty = choiceDifficulty;
+            currentQuestionIndex = 0
+            startQuiz()
+        });
+    } catch (error) {
+        console.log=("erreur lors du chargement des questions", error);
+    }
+}
+
+function startQuiz() {
+    document.querySelector(".difficulty-selection").classList.add("hidden")
+    document.getElementById("quiz-container").classList.remove("hidden")
+    showQuestions()
+}
+
+function showQuestions() {
+    if(currentQuestionIndex.length<questions.length) {
+        console.log(questions)
+        const questionData= questions[currentQuestionIndex]
+        console.log( "question data" + questionData)
+    }
+}
+
 function calculateScore(callback){
     const correctAnswers ={
         q1:"Paris",
@@ -80,43 +125,9 @@ document.querySelectorAll(".difficulty-btn").forEach((btn) => {
     })
 })
 
-let currentQuestionIndex= 0;
-let questions= [];
-let selectedDifficulty= "";
 
-function loadQuestions(choiceDifficulty = ""){
-    selectedDifficulty = choiceDifficulty;
-    console.log("Difficulté : " + selectedDifficulty)
 
-    try {
-        const response= fetch("questions.json")
-        .then((response) => {
-            return response.json();
-        })
-        .then((questions) => {
-            const filteredQuestions = questions.filter(
-                (q)=>q.difficulty===selectedDifficulty
-            )
-            selectedDifficulty = choiceDifficulty;
-            currentQuestionIndex = 0
-            startQuiz()
-        });
-    } catch (error) {
-        console.log=("erreur lors du chargement des questions", error);
-    }
-}
-function startQuiz() {
-    document.querySelector(".difficulty-selection").classList.add("hidden")
-    document.getElementById("quiz-container").classList.remove("hidden")
-    showQuestions()
-}
-function showQuestions() {
-    if(currentQuestionIndex.length<questions.length) {
-        console.log(questions)
-        const questionData= questions[currentQuestionIndex]
-        console.log( "question data" + questionData)
-    }
-}
+
 function startTimer(){
     
 }

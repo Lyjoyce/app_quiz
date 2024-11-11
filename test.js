@@ -108,7 +108,7 @@ async function loadQuestions(){
 }
 function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
-    document.getElementById(".quiz-container").classList.remove("hidden")
+    document.getElementById("quiz-container").classList.remove("hidden")
     showQuestions()
 }
 function showQuestions() {
