@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function(){
         const usernameDisplay= document.getElementById("username-display")
         usernameDisplay.textContent= storedUsername 
         showUserMenu(storedUsername)
-        loadQuestions()
     }else{
         window.location.href="login.html"
     }
@@ -85,7 +84,7 @@ let currentQuestionIndex= 0;
 let questions= [];
 let selectedDifficulty= "";
 
-function loadQuestions(choiceDifficulty = "facile"){
+function loadQuestions(choiceDifficulty = ""){
     selectedDifficulty = choiceDifficulty;
     console.log("Difficulté : " + selectedDifficulty)
 
@@ -98,10 +97,8 @@ function loadQuestions(choiceDifficulty = "facile"){
             const filteredQuestions = questions.filter(
                 (q)=>q.difficulty===selectedDifficulty
             )
-            
+            selectedDifficulty = choiceDifficulty;
             currentQuestionIndex = 0
-            console.log("questions non filtrées" + questions);
-            console.log("questions filtrées" + filteredQuestions);
             startQuiz()
         });
     } catch (error) {
@@ -110,7 +107,7 @@ function loadQuestions(choiceDifficulty = "facile"){
 }
 function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
-    document.getElementById(".quiz-container").classList.remove("hidden")
+    document.getElementById("quiz-container").classList.remove("hidden")
     showQuestions()
 }
 function showQuestions() {
@@ -119,4 +116,7 @@ function showQuestions() {
         const questionData= questions[currentQuestionIndex]
         console.log( "question data" + questionData)
     }
+}
+function startTimer(){
+    
 }
