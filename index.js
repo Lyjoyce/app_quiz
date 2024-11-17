@@ -1,8 +1,30 @@
+document.querySelectorAll(".difficulty-btn").forEach((btn) => {
+    btn.addEventListener("click",function(){
+        const level= btn.getAttribute("data-level")
+        loadQuestions(level)
+    })
+})
+
 let currentQuestionIndex= 0;
 let questions= [];
 let selectedDifficulty= "";
 
-function loadQuestions(choiceDifficulty = ""){
+async function loadQuestions(difficulty){
+    try {
+        const response = await fetch("questions.json");
+        const AllQuestions = await response.json();
+
+        questions=AllQuestions.filter((q)=> q.difficulty===difficulty)
+        selectedDifficulty=difficulty
+        currentQuestionIndex = 0
+
+        startQuiz()
+    }catch(error) {
+        console.log=("erreur lors du chargement des questions", error);
+    }
+}
+
+/*function loadQuestions(choiceDifficulty = ""){
     selectedDifficulty = choiceDifficulty;
     console.log("Difficulté : " + selectedDifficulty)
 
@@ -27,7 +49,7 @@ function loadQuestions(choiceDifficulty = ""){
     } catch (error) {
         console.log=("erreur lors du chargement des questions", error);
     }
-}
+}*/
 
 function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
@@ -36,14 +58,40 @@ function startQuiz() {
 }
 
 function showQuestions() {
-    if(currentQuestionIndex.length<questions.length) {
+    if(currentQuestionIndex<questions.length) {
         console.log(questions)
         const questionData= questions[currentQuestionIndex]
         console.log( "question data" + questionData)
-    }
+        const questionContainer= document.getElementById("quiz-container")
+
+        questionContainer.innerHTML = `
+        <div class"question">
+        <p> ${questionData.question} <p/>
+        <div/>
+        <form id="quiz-form">
+         ${questionData.options
+         .map(
+                (option, index)=> `
+                <label> 
+                    <input type="radio" name="answer" value="${option}">
+                    <span class="custom-radio"></span>
+                    ${option}
+                </label>
+                `
+                )
+            .join("")}
+            <button type="button" onclick= "submitAnswer()">Soumettre</button>
+        </form>
+        `
+        }else{
+            showFinalResult()
+        }
 }
 
-function calculateScore(callback){
+
+
+
+/*function calculateScore(callback){
     const correctAnswers ={
         q1:"Paris",
         q2:"Mercure",
@@ -59,22 +107,24 @@ function calculateScore(callback){
     }
     callback(score)
 }
-/*une fonction qui a la responsabilité d'afficher le score*/
+//une fonction qui a la responsabilité d'afficher le score
 function displayResult(score, callback){
     const resultDIV = document.getElementById("result")
         //badkiks pour écrire js dans html avec ${}
     resultDIV.innerHTML= `votre score est de ${score} sur 3.`
     callback(score)
 }
-/*une fonction qui a la responsabilité d'afficher un mss en f° du score*/
+
+//une fonction qui a la responsabilité d'afficher un mss en f° du score*/
 /**
  * 
  * @param {*int} score 
  */
-function handleMessage(score){
+/*function handleMessage(score){
     const resultDIV = document.getElementById("result")
-    /*To clean the result on page*/
-    resultDIV.classList.remove("excellent","good","try-again")
+    
+    //To clean the result on page
+    /*resultDIV.classList.remove("excellent","good","try-again")
     if(score===3){
         resultDIV.innerHTML+=" <br>Excellent!"
         resultDIV.classList.add("excellent")
@@ -86,6 +136,7 @@ function handleMessage(score){
         resultDIV.classList.add("try-again")
     }
 }
+    */
 function submitQuiz() {
     calculateScore(function(score) {
         displayResult(score, function() {
@@ -126,8 +177,3 @@ document.querySelectorAll(".difficulty-btn").forEach((btn) => {
 })
 
 
-
-
-function startTimer(){
-    
-}
