@@ -9,18 +9,22 @@ let currentQuestionIndex= 0;
 let questions= [];
 let selectedDifficulty= "";
 
+const URL= "https://lyjoyce.github.io/appli_quiz2_level/"
 async function loadQuestions(difficulty){
     try {
-        const response = await fetch("questions.json");
-        const AllQuestions = await response.json();
+        const response = await fetch(URL);
+        if (!response.ok){
+            throw new Error(`Erreur HTTP: ${response.status}`)
+        }
+        const allQuestions = await response.json();
 
-        questions=AllQuestions.filter((q)=> q.difficulty===difficulty)
+        questions=allQuestions.filter((q)=> q.difficulty===difficulty)
         selectedDifficulty=difficulty
         currentQuestionIndex = 0
 
         startQuiz()
     }catch(error) {
-        console.log=("erreur lors du chargement des questions", error);
+        console.log=("erreur lors du chargement des questions", error.message);
     }
 }
 
@@ -144,10 +148,12 @@ function submitQuiz() {
         })
     })
 }
+
 /**
  * cette function affiche username dans le span, le nom utilisateur du localStorage
  * @param {*} username 
  */
+
 function showUserMenu(username){
     const usernameDisplay= document.getElementById("username-display")
     usernameDisplay.textContent= username
