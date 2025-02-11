@@ -14,9 +14,6 @@ function loginUser(){
     }
 }
 
-
-
-
 /*function checkAuth(){
     const isAuthenticated =localStorage.getItem("isAuthenticated")
     if(isAuthenticated !== "true"){
