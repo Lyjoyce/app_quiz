@@ -67,18 +67,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 })
 
-/*
-document.getElementById("logout-btn").addEventListener("click", function(){
-    localStorage.setItem("isAuthenticated",false)
-    window.location.href="login.html"
-})
-    */
-document.querySelectorAll(".difficulty-btn").forEach((btn) => {
-    btn.addEventListener("click",function(){
-        const level= btn.getAttribute("data-level")
-        loadQuestions(level)
-    })
-})
 let currentQuestionIndex =0
 let questions = []
 let selectedDifficulty = ""
