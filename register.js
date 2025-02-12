@@ -8,7 +8,7 @@ function registerUser(){
         localStorage.setItem("password", password)
    
         alert("inscription réussie! Vous pouvez maintenant vous connecter")
-        window.location.href="http://127.0.0.1:3000/login.html"
+        window.location.href="login.html"
     }else{
         alert("Veuillez remplir tous les champs")
     }
