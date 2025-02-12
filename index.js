@@ -39,19 +39,10 @@
     }
 }
     */
-function submitQuiz() {
-    calculateScore(function(score) {
-        displayResult(score, function() {
-            handleMessage(score)
-        })
-    })
-}
-
 /**
  * cette function affiche username dans le span, le nom utilisateur du localStorage
  * @param {*} username 
  */
-
 function showUserMenu(username){
     const usernameDisplay= document.getElementById("username-display")
     usernameDisplay.textContent= username
@@ -61,11 +52,28 @@ document.addEventListener("DOMContentLoaded", function(){
     const storedUsername= localStorage.getItem("username")
     const isAuthenticated= localStorage.getItem("isAuthenticated")
     if(storedUsername && isAuthenticated === "true"){
+        const usernameDisplay= document.getElementById("username-display")
+        usernameDisplay.textContent= storedUsername 
         showUserMenu(storedUsername)
+        loadQuestions()
     }else{
         window.location.href="login.html"
     }
 })
+
+document.getElementById("logout-btn").addEventListener("click", function(){
+    localStorage.setItem("isAuthenticated",false)
+    window.location.href="login.html"
+})
+
+
+function submitQuiz() {
+    calculateScore(function(score) {
+        displayResult(score, function() {
+            handleMessage(score)
+        })
+    })
+}
 
 let currentQuestionIndex =0
 let questions = []
