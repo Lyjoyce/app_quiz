@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 /*function calculateScore(callback){
     const correctAnswers ={
         q1:"Paris",
