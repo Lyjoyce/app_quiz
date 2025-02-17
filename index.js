@@ -94,6 +94,7 @@ async function loadQuestions(difficulty){
         console.log("Erreur lors du chargement des questions", error)
     }
 }
+
 function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
     document.getElementById("quiz-container").classList.remove("hidden")
