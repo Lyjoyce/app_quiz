@@ -1,5 +1,5 @@
-
-/*function calculateScore(callback){
+/*
+function calculateScore(callback){
     const correctAnswers ={
         q1:"Paris",
         q2:"Mercure",
@@ -16,13 +16,13 @@
     callback(score)
 }
 
-
 //une fonction qui a la responsabilité d'afficher un mss en f° du score*/
 /**
  * 
  * @param {*int} score 
  */
-/*function handleMessage(score){
+/*
+function handleMessage(score){
     const resultDIV = document.getElementById("result")
     
     //To clean the result on page
@@ -37,8 +37,37 @@
         resultDIV.innerHTML+=" <br>Vous pouvez faire mieux!"
         resultDIV.classList.add("try-again")
     }
+}*/
+//Vérifier l'authentification de l'utilisateur
+document.addEventListener("DOMcontentLoaded", function () {
+    const storedUsername = localStorage.getItem("username")
+    const isAuthenticated = localStorage.getItem("isAuthenticated")
+    if (storedUsername && isAuthenticated === "true") {
+        showUserMenu(storedUsername)
+    } else {
+        window.location.href = "login.html"
+    }
+})
+//
+function checkAuth(){
+    const isAuthenticated =localStorage.getItem("isAuthenticated")
+    if(isAuthenticated !== "true"){
+        alert("Veuillez vous connecter pour acceder au quiz") 
+        window.location.href="login.html"
+    }
 }
-    */
+
+// Afficher le menu utilisateur 
+function showUserMenu(username) {
+    const unsernameDisplay = document.getElementById("username-display")
+    usernameDisplay.textContent = username
+    }
+// Gérer la déconnexion
+document.getElementById("logout-btn").addEventListener("click", function (){
+    localStorage.setItem("isAuthenticated", false)
+    window.location.href = "login.html"
+})
+
 /**
  * cette function affiche username dans le span, le nom utilisateur du localStorage
  * @param {*} username 
@@ -52,54 +81,84 @@ document.addEventListener("DOMContentLoaded", function(){
     const storedUsername= localStorage.getItem("username")
     const isAuthenticated= localStorage.getItem("isAuthenticated")
     if(storedUsername && isAuthenticated === "true"){
+
         const usernameDisplay= document.getElementById("username-display")
         usernameDisplay.textContent= storedUsername 
+
         showUserMenu(storedUsername)
-        loadQuestions()
+
     }else{
         window.location.href="login.html"
     }
 })
-
-document.getElementById("logout-btn").addEventListener("click", function(){
-    localStorage.setItem("isAuthenticated",false)
-    window.location.href="login.html"
-})
-
-
-function submitQuiz() {
-    calculateScore(function(score) {
-        displayResult(score, function() {
-            handleMessage(score)
-        })
-    })
-}
-
-let currentQuestionIndex =0
-let questions = []
+/*
+let currentQuestionIndex = 0
+let question = []
 let selectedDifficulty = ""
 
 async function loadQuestions(difficulty){
     console.log("difficulté choisie" + difficulty)
     try{
-        const response = await fetch ("questions.json")
-        const allQuestions = await response.json()
+        const response = await fetch("questions.json")
+        questions = await response.json()
 
+        const FilterdQuestions = questions.filters(
+            (q) => q.difficulty === difficulty
+    )
+    selectedDifficulty = difficulty
+    currentQuestionIndex = 0 
+
+    startQuiz()
+    } catch (error){
+        console.log("Erreur lors du chargement")
+    }
+}
+*/
+//Choisir le niveau de difficulté
+document.querySelectorAll(".difficulty-btn").forEach((btn) =>{
+    btn.addEventListener("click", function () {
+        const level = btn.getAttribute("data-level")
+        loadQuestions(level)
+    })
+})
+
+let currentQuestionIndex =0
+let questions = []
+let selectedDifficulty = ""
+
+
+//Chargement des questions en fonction du niveau sélectionné
+
+const URL= "https://46921d2a-73a6-436b-aca9-deb6e9823b49.mock.pstmn.io/api/AllQuestions"
+
+async function loadQuestions(difficulty){
+    try{
+        const response = await fetch("questions.json")
+
+        if (!response.ok){
+            throw new Error(`Erreur HTTP: ${response.status}`)
+        }
+        const allQuestions = await response.json()
+       
+//Filtrer les questions par diff
         questions= allQuestions.filter((q) => q.difficulty === difficulty)
         selectedDifficulty = difficulty
         currentQuestionIndex = 0
 
         startQuiz()
-    }catch (error) {
-        console.log("Erreur lors du chargement des questions", error)
+    }
+    catch (error) {
+        console.error("Erreur lors du chargement des questions", error)
     }
 }
 
+//Démarrer le quiz
 function startQuiz() {
     document.querySelector(".difficulty-selection").classList.add("hidden")
     document.getElementById("quiz-container").classList.remove("hidden")
     showQuestion()
 }
+//Afficher la question actuelle
 function showQuestion() {
     if(currentQuestionIndex < questions.length) {
         console.log(questions)
@@ -131,7 +190,6 @@ function showQuestion() {
         }
 }
 //Soumettre la réponse actuelle
-
 function submitAnswer(){
     const form = document.getElementById("quiz-form")
     const selectAnswer = form.answer.value
@@ -154,6 +212,9 @@ function checkAnswer(selectAnswer) {
         incrementScore()
     }
 }
+
+//Incrémenter le score
+
 let score = 0
 function incrementScore() {
     score++
@@ -167,33 +228,12 @@ function showFinalResult() {
     </div>
     `
 }
-//Choisir le niveau de difficulté
-document.querySelectorAll(".difficulty-btn").forEach((btn) =>{
-    btn.addEventListener("click", function () {
-        const level = btn.getAttribute("data-level")
-        loadQuestions(level)
+//
+function submitQuiz() {
+    calculateScore(function(score) {
+        displayResult(score, function() {
+            handleMessage(score)
+        })
     })
-})
+}
 
-//Vérifier l'authentification de l'utilisateur
-document.addEventListener("DOMcontentLoaded", function () {
-    const storedUsername = localStorage.getItem("username")
-    const isAuthenticated = localStorage.getItem("isAuthenticated")
-    if (storedUsername && isAuthenticated === "true") {
-        showUserMenu(storedUsername)
-    } else {
-        window.location.href = "login.html"
-    }
-})
-
-// Afficher le menu utilisateur 
-function showUserMenu(username) {
-    const unsernameDisplay = document.getElementById("username-display")
-    usernameDisplay.textContent = username
-    }
-
-// Gérer la déconnexion
-document.getElementById("logout-btn").addEventListener("click", function (){
-    localStorage.setItem("isAuthenticated", false)
-    window.location.href = "login.html"
-})
