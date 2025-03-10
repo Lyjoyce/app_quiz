@@ -3,8 +3,9 @@
 
 ## Présentation
 
-Résolution de l'exercice proposé dans la newsletter de decembre 2022.
-Application proposant une todoList permettant au père Noël de pouvoir livrer correctement tous les enfants (et grand enfant) du monde entier.
+Résolution de l'exercice proposé dans l'application quiz d'octobre 2024 .
+Application proposant un quiz de culture générale avec trois niveaux de difficultée : facile, moyen, difficle.
+Les questions ont été générées avec chatGPT.
 
 Cet exercice permet de mettre en évidence les compétences suivantes : 
 - front-end : site web dynamique et responsive
@@ -32,7 +33,7 @@ IDE
 
 ## Technologies utilisées
 
-Ce projet utilise en front, Spring Boot 2.7.8 en back-end
+Ce projet utilise en front, Spring Boot 3.4.3 en back-end 
 
 ## Utilisation
 
@@ -43,7 +44,7 @@ Pour lancer le projet, il faut lancer les commandes suivantes dans l'ordre :
 - `yarn install` dans le dossier front
 - `yarn start` dans le dossier front
 - `mvn spring-boot:run` dans le dossier back
-- ouvrir votre navigateur sur l'adresse http://localhost:4200
+- ouvrir votre navigateur sur l'adresse http://localhost:
 
 ### Fonctionnalités
 
