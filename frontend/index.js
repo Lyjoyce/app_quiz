@@ -5,7 +5,7 @@ document.addEventListener("DOMcontentLoaded", function () {
     if (storedUsername && isAuthenticated === "true") {
         showUserMenu(storedUsername)
     } else {
-        window.location.href = "login.html"
+        window.location.href = "./login.html"
     }
 })
 //
@@ -13,7 +13,7 @@ function checkAuth(){
     const isAuthenticated =localStorage.getItem("isAuthenticated")
     if(isAuthenticated !== "true"){
         alert("Veuillez vous connecter pour acceder au quiz") 
-        window.location.href="login.html"
+        window.location.href="./login.html"
     }
 }
 
@@ -25,7 +25,7 @@ function showUserMenu(username) {
 // Gérer la déconnexion
 document.getElementById("logout-btn").addEventListener("click", function (){
     localStorage.setItem("isAuthenticated", false)
-    window.location.href = "login.html"
+    window.location.href = "./login.html"
 })
 
 /**
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
         showUserMenu(storedUsername)
 
     }else{
-        window.location.href="login.html"
+        window.location.href="./login.html"
     }
 })
 
@@ -71,7 +71,7 @@ let selectedDifficulty = ""
 
 async function loadQuestions(difficulty){
     try{
-        const response = await fetch("questions.json")
+        const response = await fetch("./questions.json")
 
         if (!response.ok){
             throw new Error(`Erreur HTTP: ${response.status}`)
