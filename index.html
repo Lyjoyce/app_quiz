@@ -18,27 +18,29 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <h1>Quiz interactif</h1>
+    <main>
+        <div class="container">
+            <h1>Quiz interactif</h1>
 
-        <div class="difficulty-selection">
-            <h2>Choisissez le niveau de difficulté</h2>
-            <button class="difficulty-btn" data-level="facile">facile</button>
-            <button class="difficulty-btn" data-level="moyen">moyen</button>
-            <button class="difficulty-btn" data-level="difficile">difficile</button>
+            <div class="difficulty-selection">
+                <h2>Choisissez le niveau de difficulté</h2>
+                <button class="difficulty-btn" data-level="facile">facile</button>
+                <button class="difficulty-btn" data-level="moyen">moyen</button>
+                <button class="difficulty-btn" data-level="difficile">difficile</button>
+            </div>
+            <div id="quiz-container" class="hidden"></div>
+            <div id="result"></div>
         </div>
-        <div id="quiz-container" class="hidden"></div>
-        <div id="result"></div>
-    </div>
 
 
-    <div class="timer-container">
-        <div class="progress-bar"></div>
-        <div id="question-container"></div>
-    </div>
+        <div class="timer-container">
+            <div class="progress-bar"></div>
+            <div id="question-container"></div>
+        </div>
 
-
+    </main>
 
     <script src="index.js"></script>
 </body>
+
 </html>

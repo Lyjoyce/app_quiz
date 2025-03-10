@@ -45,8 +45,8 @@ body{
 #logout-btn:hover{
     background-color: skyblue;
 }
+
 .container{
-    position: relative;
     margin-top: 150px;
     background-color: skyblue;
     color: gold;
