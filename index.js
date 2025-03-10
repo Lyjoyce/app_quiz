@@ -1,43 +1,3 @@
-/*
-function calculateScore(callback){
-    const correctAnswers ={
-        q1:"Paris",
-        q2:"Mercure",
-        q3:"Jupiter",
-    }
-    const form = document.getElementById("quiz-form")
-    let score=0
-    for(const question in correctAnswers){
-        const userAnswers= form[question].value
-        if(userAnswers===correctAnswers[question]){
-            score++
-        }
-    }
-    callback(score)
-}
-
-//une fonction qui a la responsabilité d'afficher un mss en f° du score*/
-/**
- * 
- * @param {*int} score 
- */
-/*
-function handleMessage(score){
-    const resultDIV = document.getElementById("result")
-    
-    //To clean the result on page
-    /*resultDIV.classList.remove("excellent","good","try-again")
-    if(score===3){
-        resultDIV.innerHTML+=" <br>Excellent!"
-        resultDIV.classList.add("excellent")
-        }else if(score===2){
-        resultDIV.innerHTML+=" <br>Bon travail, vous pouvez vous améliorer!"
-        resultDIV.classList.add("good")
-        }else{
-        resultDIV.innerHTML+=" <br>Vous pouvez faire mieux!"
-        resultDIV.classList.add("try-again")
-    }
-}*/
 //Vérifier l'authentification de l'utilisateur
 document.addEventListener("DOMcontentLoaded", function () {
     const storedUsername = localStorage.getItem("username")
@@ -91,29 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location.href="login.html"
     }
 })
-/*
-let currentQuestionIndex = 0
-let question = []
-let selectedDifficulty = ""
 
-async function loadQuestions(difficulty){
-    console.log("difficulté choisie" + difficulty)
-    try{
-        const response = await fetch("questions.json")
-        questions = await response.json()
-
-        const FilterdQuestions = questions.filters(
-            (q) => q.difficulty === difficulty
-    )
-    selectedDifficulty = difficulty
-    currentQuestionIndex = 0 
-
-    startQuiz()
-    } catch (error){
-        console.log("Erreur lors du chargement")
-    }
-}
-*/
 //Choisir le niveau de difficulté
 document.querySelectorAll(".difficulty-btn").forEach((btn) =>{
     btn.addEventListener("click", function () {
@@ -129,7 +67,7 @@ let selectedDifficulty = ""
 
 //Chargement des questions en fonction du niveau sélectionné
 
-const URL= "https://46921d2a-73a6-436b-aca9-deb6e9823b49.mock.pstmn.io/api/AllQuestions"
+//const URL= "https://46921d2a-73a6-436b-aca9-deb6e9823b49.mock.pstmn.io/api/AllQuestions"
 
 async function loadQuestions(difficulty){
     try{
@@ -189,6 +127,7 @@ function showQuestion() {
             showFinalResult()
         }
 }
+
 //Soumettre la réponse actuelle
 function submitAnswer(){
     const form = document.getElementById("quiz-form")
@@ -200,19 +139,19 @@ function submitAnswer(){
     }
     //Vérifier la réponse et passer à la question suivante
     checkAnswer(selectAnswer)
+    nextQuestion()
+}
+function nextQuestion(){
     currentQuestionIndex++
     showQuestion()
 }
-
 // Vérifier si la réponse est correcte
-
 function checkAnswer(selectAnswer) {
     const currentQuestion = questions[currentQuestionIndex]
     if (selectAnswer === currentQuestion.answer){
         incrementScore()
     }
 }
-
 //Incrémenter le score
 
 let score = 0
@@ -223,7 +162,7 @@ function incrementScore() {
 function showFinalResult() {
     const quizContainer = document.getElementById("quiz-container")
     quizContainer.innerHTML = `
-    <div id="result>
+    <div id="result">
     <p>Votre score final est de ${score} sur ${questions.length}.</p>
     </div>
     `
@@ -237,3 +176,43 @@ function submitQuiz() {
     })
 }
 
+function calculateScore(callback){
+    const correctAnswers ={
+        q1:"Paris",
+        q2:"Mercure",
+        q3:"Jupiter",
+    }
+    const form = document.getElementById("quiz-form")
+    let score=0
+    for(const question in correctAnswers){
+        const userAnswers= form[question].value
+        if(userAnswers===correctAnswers[question]){
+            score++
+        }
+    }
+    callback(score)
+}
+//une fonction qui a la responsabilité d'afficher un mss en f° du score*/
+/**
+ * 
+ * @param {*int} score 
+ */
+
+function handleMessage(score){
+    const resultDIV = document.getElementById("result")
+
+    //To clean the result on page
+    resultDIV.classList.remove("excellent","good","try-again")
+    if(score===10){
+        resultDIV.innerHTML+=" <br>Excellent!"
+        resultDIV.classList.add("excellent")
+        }else if(score===7){
+        resultDIV.innerHTML+=" <br>Bon travail, vous pouvez vous améliorer!"
+        resultDIV.classList.add("good")
+        }else{
+        resultDIV.innerHTML+=" <br>Vous pouvez faire mieux!"
+        resultDIV.classList.add("try-again")
+    }
+}
+//COOKIE
+document.cookie = "username=zaz; expires=Fri, 01 aout 2025 12:00:00 UTC";
