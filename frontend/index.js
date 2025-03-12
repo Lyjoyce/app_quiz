@@ -71,7 +71,7 @@ let selectedDifficulty = ""
 
 async function loadQuestions(difficulty){
     try{
-        const response = await fetch("./questions.json")
+        const response = await fetch("../frontend/questions.json")
 
         if (!response.ok){
             throw new Error(`Erreur HTTP: ${response.status}`)
