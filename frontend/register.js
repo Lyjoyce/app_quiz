@@ -6,7 +6,7 @@ function registerUser(){
 
      /*localStorage fonctionne avec clé,valeur*/
      localStorage.setItem("username", username)
-     LocalStorage.setItem("password", password)
+     localStorage.setItem("password", password)
 
      alert("inscription réussie! Vous pouvez maintenant vous connecter")
      window.location.href="login.html"
