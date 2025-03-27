@@ -1,5 +1,5 @@
 
-# Application QUIZ octobre 2024 STUDI (formateur: ) 
+# Application QUIZ octobre 2024 STUDI (formateur:Maleck Chaouche ) 
 
 ## Présentation
 
