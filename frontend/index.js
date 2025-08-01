@@ -17,11 +17,12 @@ function checkAuth(){
     }
 }
 
-// Afficher le menu utilisateur 
+/* Afficher le menu utilisateur 
 function showUserMenu(username) {
     const unsernameDisplay = document.getElementById("username-display")
     usernameDisplay.textContent = username
     }
+    */
 // Gérer la déconnexion
 document.getElementById("logout-btn").addEventListener("click", function (){
     localStorage.setItem("isAuthenticated", false)

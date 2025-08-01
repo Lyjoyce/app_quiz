@@ -4,13 +4,13 @@
 ## Présentation
 
 Résolution de l'exercice proposé dans l'application quiz d'octobre 2024 .
-Application proposant un quiz de culture générale avec trois niveaux de difficultée : facile, moyen, difficle.
+Application proposant un quiz de culture générale avec trois niveaux de difficulté : facile, moyen, difficle.
 Les questions ont été générées avec chatGPT.
 
 Cet exercice permet de mettre en évidence les compétences suivantes : 
 - front-end : site web dynamique et responsive
 - back-end : composant d'accès à la base de données
-- base de données : manipulation des opérations elementaires 
+- base de données : manipulation des opérations élémentaires 
 
 ## Pré-requis
 
