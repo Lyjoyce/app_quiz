@@ -5,7 +5,7 @@ document.addEventListener("DOMcontentLoaded", function () {
     if (storedUsername && isAuthenticated === "true") {
         showUserMenu(storedUsername)
     } else {
-        window.location.href = "../frontend/login.html"
+        window.location.href = "../app_quiz/login.html"
     }
 })
 //
