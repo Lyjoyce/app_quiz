@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     border: 10px solid transparent;
-    border-top: 10px solid royalblue;
+    border-top: 10px solid skyblue;
     border-bottom: 10px solid darkblue;
     border-radius: 50%;
     width: 100px;
@@ -68,7 +68,7 @@
 
 
 body{
-    background-color: royalblue;
+    background-color: skyblue;
 }
 .form-body{
     font-size: large;
@@ -77,8 +77,8 @@ body{
     align-items: center;
 }
 .container{
-    background-color:orange;
-    color: black;
+    background-color:#010141;
+    color: white;
     padding: 20px;
     box-shadow: 2px 8px 12px black;
     border-radius: 10px;
@@ -102,12 +102,12 @@ button{
     font-weight: bold;
     border-radius: 6px;
     padding: 20px;
-    background-color:royalblue;
-    color: white;
+    background-color:orange;
+    color: black;
 }
 button:hover{
-    color: white;
-    background-color: darkblue;
+    color: black;
+    background-color: skyblue;
 }
 a{
     text-decoration: none;
@@ -119,9 +119,9 @@ a{
 a:hover{
     text-decoration: none;
     border-radius: 5px;
-    background-color: blue;
+     background-color: #010141;
     padding: 10px;
-    color: gold;
+    color: white;
 }
 @media screen and (max-width: 350px){
     a{

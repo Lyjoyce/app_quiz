@@ -7,8 +7,8 @@
     align-items: center;
 }
 .container{
-    background-color:royalblue;
-    color: orange;
+    background-color:skyblue;
+    color: black;
     padding: 20px;
     box-shadow: 2px 8px 12px orangered;
     border-radius: 10px;
@@ -32,12 +32,13 @@ button{
     font-weight: bold;
     border-radius: 6px;
     padding: 20px;
-    background-color:darkblue;
-    color: orange;
+    background-color:orange;
+    color: #010141;
+    
 }
 button:hover{
-    background-color:orange;
-    color: darkblue;
+    background-color:#010141;
+    color: white;
 }
 a{
     text-decoration: none;
@@ -49,9 +50,9 @@ a{
 a:hover{
     text-decoration: none;
     border-radius: 5px;
-    background-color: blue;
+    background-color: #010141;
     padding: 10px;
-    color: gold;
+    color: white;
 }
 @media screen and (max-width: 400px){
     a{
