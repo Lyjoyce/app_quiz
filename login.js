@@ -8,7 +8,7 @@ function loginUser(){
 
     if(username===storedUsername && password===storedPassword){
         localStorage.setItem("isAuthenticated", true)
-        window.location.href="../index.html"
+        window.location.href="index.html"
     }else{
         alert("nom d'utilisateur ou mot de pass incorrect")
     }
